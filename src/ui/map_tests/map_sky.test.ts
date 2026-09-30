@@ -16,6 +16,15 @@ describe('setSky', () => {
 
         expect(spy).toHaveBeenCalled();
     });
+
+    test('removes the sky when called without a specification', async () => {
+        const map = createMap();
+        await map.once('style.load');
+        map.setSky({'atmosphere-blend': 0.5});
+        map.setSky();
+
+        expect(map.getSky()).toBeUndefined();
+    });
 });
 
 describe('getSky', () => {

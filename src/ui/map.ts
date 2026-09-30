@@ -3865,14 +3865,21 @@ export class Map extends Evented<MapEventType> {
      * Sets the value of style's sky properties.
      *
      * @param sky - Sky properties to set. Must conform to the [MapLibre Style Specification](https://maplibre.org/maplibre-style-spec/sky/).
+     * Omit it to remove the sky from the style.
      * @param options - Options object.
      *
      * @example
      * ```ts
      * map.setSky({'atmosphere-blend': 1.0});
      * ```
+     *
+     * @example
+     * Remove the sky
+     * ```ts
+     * map.setSky();
+     * ```
      */
-    setSky(sky: SkySpecification, options: StyleSetterOptions = {}): this {
+    setSky(sky?: SkySpecification, options: StyleSetterOptions = {}): this {
         this._lazyInitEmptyStyle();
         this.style.setSky(sky, options);
         return this._update(true);
